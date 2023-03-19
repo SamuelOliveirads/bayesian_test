@@ -2,19 +2,16 @@
 This is a boilerplate pipeline
 generated using Kedro 0.18.6
 """
-
-import logging
-from typing import Any, Dict, Tuple
+import os
+import threading
+import time
 
 import numpy as np
 from flask import Flask, redirect, render_template, url_for
+from selenium import webdriver
 
 app = Flask(__name__, template_folder="../../data/01_raw")
 
-def split_data(
-    data: pd.DataFrame, parameters: Dict[str, Any]
-) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
-    """Splits data into features and target training and test sets.
 
 @app.route("/home")
 def index():
@@ -24,10 +21,6 @@ def index():
         selected_template = render_template("pg_layout_red.html")
     return selected_template
 
-    data_train = data.sample(
-        frac=parameters["train_fraction"], random_state=parameters["random_state"]
-    )
-    data_test = data.drop(data_train.index)
 
 @app.route("/yes", methods=["POST"])
 def yes_event():
@@ -42,40 +35,34 @@ def no_event():
 def run_flask_app():
     app.run()
 
-def make_predictions(
-    X_train: pd.DataFrame, X_test: pd.DataFrame, y_train: pd.Series
-) -> pd.Series:
-    """Uses 1-nearest neighbour classifier to create predictions.
 
-    Args:
-        X_train: Training data of features.
-        y_train: Training data for target.
-        X_test: Test data for features.
+def run_scrapper():
+    time.sleep(2)  # Give Flask server some time to start
+    driver = webdriver.Chrome()
 
-    Returns:
-        y_pred: Prediction of the target variable.
-    """
+    driver.get("http://127.0.0.1:5000/home")
 
-    X_train_numpy = X_train.to_numpy()
-    X_test_numpy = X_test.to_numpy()
+    clicks = 10000
+    for click in range(clicks):
+        if np.random.random() < 0.5:
+            driver.find_element("name", "yescheckbox").click()
+            driver.find_element("id", "yesbtn").click()
+        else:
+            driver.find_element("name", "nocheckbox").click()
+            driver.find_element("id", "nobtn").click()
 
-    squared_distances = np.sum(
-        (X_train_numpy[:, None, :] - X_test_numpy[None, :, :]) ** 2, axis=-1
-    )
-    nearest_neighbour = squared_distances.argmin(axis=0)
-    y_pred = y_train.iloc[nearest_neighbour]
-    y_pred.index = X_test.index
-
-    return y_pred
+    driver.quit()
+    return None
 
 
-def report_accuracy(y_pred: pd.Series, y_test: pd.Series):
-    """Calculates and logs the accuracy.
+def run_flask_app_and_scrapper(example_iris_data):
+    flask_thread = threading.Thread(target=run_flask_app)
+    scraper_thread = threading.Thread(target=run_scrapper)
 
-    Args:
-        y_pred: Predicted target.
-        y_test: True target.
-    """
-    accuracy = (y_pred == y_test).sum() / len(y_test)
-    logger = logging.getLogger(__name__)
-    logger.info("Model has accuracy of %.3f on test data.", accuracy)
+    flask_thread.start()
+    scraper_thread.start()
+
+    scraper_thread.join()
+    # Terminate Flask app when the scraper is finished
+    # You can replace this with a more graceful shutdown method if needed
+    os._exit(0)
