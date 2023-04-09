@@ -6,6 +6,20 @@ This is your new Kedro project, which was generated using `Kedro 0.18.6`.
 
 Take a look at the [Kedro documentation](https://kedro.readthedocs.io) to get started.
 
+### Bussiness Problem
+A empresa iSketch, localizada em São Paulo, fabrica e disponibiliza um software com foco no desenvolvimento 3D de projetos para construção civil, como forma de prototipagem de grandes projetos.
+
+Para usar o software, o cliente precisa adquirir uma licença de uso que se renova anualmente.
+
+Uma das melhores estratégias de aquisição clientes da iSketch é a captura do email dos clientes em troca de uma Newsletter com conteúdo semanais sobre construção civil. A assinatura de newsletter permite começar um relacionamento entre a iSketch e as pessoas, a fim de mostrar as vantagens de utilizar o software para criar protótipos de construções civis.
+
+Portanto, a melhoria de conversão da página de captura de email, ofertando a newsletter em troca, é crucial para o crescimento do número de clientes.
+
+Sendo assim, o coordenador de Marketing da empresa pediu ao time de Designers que criassem uma nova página de captura de email com uma pequena modificação nas cores do botão de 'sign-up', a fim de aumentar a conversão da página.
+
+O time de Designers criou uma página com o botão de 'sign-up' vermelho para ser testada contra a página atual que possui o botão de 'sign-up' azul. O coordenador de Marketing tem pressa em testar a nova página, pois a empresa vem adquirindo poucos clientes nas últimas semanas e isso pode comprometer o faturamento anual da empresa.
+
+O time de Cientistas de Dados da iSketch foi adicionado com a missão de testar a nova página de captura de email o mais rápido possível. A primeira ideia foi planejar um experimento de teste A/B entre as duas páginas por um período de 7 dias, para concluir a efetividade da mudança da cor do botão. Porém, o coordenador de Marketing categoricamente disse ao time de dados que não pode esperar 7 dias e solicitou que concluíssem em menos tempo.
 ## Rules and guidelines
 
 In order to get the best out of the template:
