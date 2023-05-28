@@ -7,19 +7,20 @@ This is your new Kedro project, which was generated using `Kedro 0.18.6`.
 Take a look at the [Kedro documentation](https://kedro.readthedocs.io) to get started.
 
 ### Bussiness Problem
-A empresa iSketch, localizada em São Paulo, fabrica e disponibiliza um software com foco no desenvolvimento 3D de projetos para construção civil, como forma de prototipagem de grandes projetos.
+The company iSketch, located in São Paulo, manufactures and makes available software focused on the 3D development of projects for civil construction, as a way of prototyping large projects.
 
-Para usar o software, o cliente precisa adquirir uma licença de uso que se renova anualmente.
+To use the software, the customer needs to acquire a license that is renewed annually.
 
-Uma das melhores estratégias de aquisição clientes da iSketch é a captura do email dos clientes em troca de uma Newsletter com conteúdo semanais sobre construção civil. A assinatura de newsletter permite começar um relacionamento entre a iSketch e as pessoas, a fim de mostrar as vantagens de utilizar o software para criar protótipos de construções civis.
+One of iSketch's best customer acquisition strategies is to capture the customer's email address in exchange for a newsletter with weekly content about construction. The newsletter subscription allows you to start a relationship between iSketch and people, in order to show the advantages of using the software to create civil construction prototypes.
 
-Portanto, a melhoria de conversão da página de captura de email, ofertando a newsletter em troca, é crucial para o crescimento do número de clientes.
+Therefore, improving the conversion rate of the email capture page by offering the newsletter in return is crucial for growing the number of customers.
 
-Sendo assim, o coordenador de Marketing da empresa pediu ao time de Designers que criassem uma nova página de captura de email com uma pequena modificação nas cores do botão de 'sign-up', a fim de aumentar a conversão da página.
+Therefore, the Marketing Coordinator of the company asked the design team to create a new email capture page with a small change in the colors of the 'sign-up' button, in order to increase the conversion rate of the page.
 
-O time de Designers criou uma página com o botão de 'sign-up' vermelho para ser testada contra a página atual que possui o botão de 'sign-up' azul. O coordenador de Marketing tem pressa em testar a nova página, pois a empresa vem adquirindo poucos clientes nas últimas semanas e isso pode comprometer o faturamento anual da empresa.
+The design team created a page with a red sign-up button to be tested against the current page that has a blue sign-up button. The Marketing Coordinator is in a hurry to test the new page, as the company has been acquiring few customers in recent weeks and this could jeopardize the company's annual revenue.
 
-O time de Cientistas de Dados da iSketch foi adicionado com a missão de testar a nova página de captura de email o mais rápido possível. A primeira ideia foi planejar um experimento de teste A/B entre as duas páginas por um período de 7 dias, para concluir a efetividade da mudança da cor do botão. Porém, o coordenador de Marketing categoricamente disse ao time de dados que não pode esperar 7 dias e solicitou que concluíssem em menos tempo.
+The iSketch Data Scientist team was added with the mission to test the new email capture page as soon as possible. The first idea was to plan an A/B test experiment between the two pages for a period of 7 days, to conclude the effectiveness of the button color change. However, the Marketing Coordinator categorically told the data team that they could not wait 7 days and asked them to complete it in less time.
+
 ## Rules and guidelines
 
 In order to get the best out of the template:
@@ -44,7 +45,7 @@ pip install -r src/requirements.txt
 You can run your Kedro project with:
 
 ```
-kedro run
+kedro run --runner=ParallelRunner
 ```
 
 ## How to test your Kedro project

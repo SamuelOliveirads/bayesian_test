@@ -5,66 +5,37 @@
 ## Overview
 
 This pipeline:
-1. splits the data into training dataset and testing dataset using a configurable ratio found in `conf/base/parameters.yml`
-2. runs a simple 1-nearest neighbour model (`make_prediction` node) and makes prediction dataset
-3. reports the model accuracy on a test set (`report_accuracy` node)
+
+1. Runs a flask application and a scrapper in parallel using multithreading (`run_flask_app_and_scrapper` node in `nodes.py`).
+2. Animates a plot of the data experiment (`animate_plot` node in `analytics.py`).
 
 ## Pipeline inputs
 
-### `example_iris_data`
+### `data_experiment`
 
 |      |                    |
 | ---- | ------------------ |
-| Type | `pandas.CSVDataSet` |
-| Description | Example iris data containing columns |
-
-
-### `parameters`
-
-|      |                    |
-| ---- | ------------------ |
-| Type | `dict` |
-| Description | Project parameter dictionary that must contain the following keys: `train_fraction` (the ratio used to determine the train-test split), `random_state` (random generator to ensure train-test split is deterministic) and `target_column` (identify the target column in the dataset) |
-
+| Type | `pandas.DataFrame` |
+| Description | DataFrame representing the experimental data to be passed to the flask application and the scrapper |
 
 ## Pipeline intermediate outputs
 
-### `X_train`
+### `data_experiment_updated`
 
 |      |                    |
 | ---- | ------------------ |
 | Type | `pandas.DataFrame` |
-| Description | DataFrame containing train set features |
+| Description | Updated DataFrame after running the flask application and scrapper |
 
-### `y_train`
-
-|      |                    |
-| ---- | ------------------ |
-| Type | `pandas.Series` |
-| Description | Series containing train set target. |
-
-### `X_test`
+### `data_experiment_output`
 
 |      |                    |
 | ---- | ------------------ |
 | Type | `pandas.DataFrame` |
-| Description | DataFrame containing test set features |
-
-### `y_test`
-
-|      |                    |
-| ---- | ------------------ |
-| Type | `pandas.Series` |
-| Description | Series containing test set target |
-
-### `y_pred`
-
-|      |                    |
-| ---- | ------------------ |
-| Type | `pandas.Series` |
-| Description | Predictions from the 1-nearest neighbour model |
-
+| Description | Output DataFrame after running the flask application and scrapper |
 
 ## Pipeline outputs
 
 ### `None`
+
+*Note: The `animate_plot` function does not produce any explicit output. It generates an animated plot as a side effect.*
