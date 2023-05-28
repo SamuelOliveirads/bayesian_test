@@ -21,6 +21,7 @@ def animate_plot(data_experiment):
     plt.legend(loc="upper left")
     plt.tight_layout()
 
+
 ani = FuncAnimation(plt.gcf(), animate_plot, interval=1000)
 
 plt.tight_layout()
